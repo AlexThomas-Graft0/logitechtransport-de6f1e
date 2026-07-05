@@ -1,40 +1,31 @@
-import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import { ThemeProvider } from "next-themes";
-import "./globals.css";
+import './globals.css';
+import { Archivo_Black, JetBrains_Mono } from 'next/font/google';
 
-const defaultUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
-
-export const metadata: Metadata = {
-  metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
-};
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  display: "swap",
-  subsets: ["latin"],
+const archivoBlack = Archivo_Black({
+  subsets: ['latin'],
+  variable: '--font-display',
+  weight: '400',
 });
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+});
+
+export const metadata = {
+  title: 'logitechtransport',
+  description: 'logitechtransport — we are logistic and transport delivery company who operate all over the uk, we use green and yellow a our primary brand colours',
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.className} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+    <html lang="en" className={`${archivoBlack.variable} ${jetbrainsMono.variable}`}>
+      <body className="bg-[#111111] text-[#F3F4F6] antialiased min-h-screen flex flex-col selection:bg-[#009866] selection:text-white">
+        {children}
       </body>
     </html>
   );
